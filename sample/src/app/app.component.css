@@ -1,0 +1,36 @@
+a {
+    cursor: pointer;
+}
+
+.topMenu {
+  background:#000;
+  color: #fff;
+  position: fixed;
+  left: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20%;
+  min-width: 250px;
+  z-index: 9999;
+  font-family: Consolas;
+}
+
+.menuBtn {
+  z-index: 9999;
+  position: absolute;
+  opacity: 0.6;
+}
+
+.menuBtnFake {
+  z-index: 9999;
+  position: absolute;
+}
+
+ul {
+  font-size: 18px;
+  line-height: 3;
+  font-weight: 400;
+  padding-top: 50px;
+  list-style: none;
+}

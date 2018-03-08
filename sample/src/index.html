@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Sample</title>
-  <base href="/">
+  <!--強制用戶端IE的文件模式使用最新版本-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge16,chrome=1" />
+  <!--避免proxy或bowser cache住-->
+  <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="pragma" content="no-cache">
 
+  <title>Angualr X Firebase</title>
+  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+  <script src="./assets/lib-npm/jquery/jquery.min.js"></script>
+  <link href="./assets/lib-npm/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+  <script src="./assets/lib-npm/sweetalert2/sweetalert2.min.js"></script>
+  <link href="./assets/lib-npm/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+  <link href="./assets/lib-npm/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
   <app-root></app-root>
