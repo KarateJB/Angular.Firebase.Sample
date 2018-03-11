@@ -46,16 +46,22 @@ export class AppComponent implements OnInit {
   public title: string = 'Angular X Firebase';
   public copyright: string = "JB";
   public menuState: string = "out";
+  public isAuth: boolean = false;
 
   constructor(private location: Location) {
   }
 
   ngOnInit(){
-    
+
   }
 
   private toggleMenu() {
     this.menuState = (this.menuState === 'out' ? 'in' : 'out');
+  }
+
+  //Logout
+  private logout() {
+    // this.af.auth.logout();
   }
 
 }

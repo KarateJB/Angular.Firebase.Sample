@@ -15,7 +15,18 @@
         <i class="fa fa-file-powerpoint-o"></i>聊天室
       </a>
     </li>
-   
+    <li *ngIf="!isAuth">
+      <button class="btn btn-danger" [routerLink]="['/Login']">
+        <i class="fa fa-google-plus"></i>
+        <span>Login</span>
+      </button>
+    </li>
+    <li *ngIf="isAuth">
+      <button class="btn btn-danger" (click)="logout()">
+        <i class="fa fa-google-plus"></i>
+        <span *ngIf="isAuth">{{user.name}}</span>
+      </button>
+    </li>
   </ul>
 </div>
 
