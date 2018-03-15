@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
   public title: string = 'Angular X Firebase';
   public copyright: string = "JB";
   public menuState: string = "out";
-  public isAuth: boolean = false;
 
   constructor(private location: Location) {
   }
