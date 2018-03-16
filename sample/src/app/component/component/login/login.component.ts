@@ -14,10 +14,10 @@ export class LoginComponent implements OnInit {
 
 
     constructor(private afAuth: AngularFireAuth) {
-        // this.afAuth.authState.subscribe(
-        //     user => this.changeState(user),
-        //     error => console.trace(error)
-        // );
+        this.afAuth.authState.subscribe(
+            user => this.changeState(user),
+            error => console.trace(error)
+        );
     }
 
     ngOnInit() {
