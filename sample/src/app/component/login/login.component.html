@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-block">
-      <div class="card-text" [ngSwitch]="isAuth">
+      <div class="card-text" [ngSwitch]="this.fbService.isAuth">
           <div *ngSwitchCase="false" class="text-center">
               <table class="table">
                   <tr>
@@ -36,22 +36,22 @@
               <table class="table">
                   <tr>
                       <td class="text-center">
-                          <label class="control-label">{{user.displayName}}</label>
+                          <label class="control-label">{{this.fbService.user.displayName}}</label>
                       </td>
                   </tr>
                   <tr>
                       <td class="text-center">
-                          <img src="{{user.photoURL}}" width="100px" height="100px"/> 
+                          <img src="{{this.fbService.user.photoURL}}" width="100px" height="100px"/> 
                       </td>
                   </tr>
                   <tr>
                         <td class="text-center">
-                            Phone number: <label class="control-label">{{user.phoenNumber || '(no phone number)'}}</label>
+                            Phone number: <label class="control-label">{{this.fbService.user.phoenNumber || '(no phone number)'}}</label>
                         </td>
                     </tr>
                   <tr>
                       <td class="text-center">
-                          Email: <label class="control-label">{{user.email || '(no email)'}}</label>
+                          Email: <label class="control-label">{{this.fbService.user.email || '(no email)'}}</label>
                       </td>
                   </tr>                 
               </table>
