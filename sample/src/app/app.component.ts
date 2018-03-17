@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Location } from '@angular/common';
+import { FirebaseService } from '@firebase/app-types/private';
+import { FbService } from './service/fb.service';
 
 declare var swal: any;
 
@@ -47,10 +49,12 @@ export class AppComponent implements OnInit {
   public copyright: string = "JB";
   public menuState: string = "out";
 
-  constructor(private location: Location) {
+  constructor(
+    private location: Location,
+    private fbService: FbService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 
@@ -60,7 +64,7 @@ export class AppComponent implements OnInit {
 
   //Logout
   private logout() {
-    // this.af.auth.logout();
+     this.fbService.logout();
   }
 
 }

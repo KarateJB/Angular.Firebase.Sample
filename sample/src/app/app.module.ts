@@ -8,13 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 //Firebase
 import { AngularFireModule } from 'angularfire2';
 import { FirebaseConfig } from './class/FirebaseConfig';
-// import { FirebaseConfigComponent } from './firebase-config/firebase-config.component';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './component/component/login/login.component';
+import { LoginComponent } from './component/login/login.component';
+import { FbService } from './service/fb.service';
 
 
 @NgModule({
@@ -33,7 +33,9 @@ import { LoginComponent } from './component/component/login/login.component';
     AngularFireAuthModule,        
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    FbService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

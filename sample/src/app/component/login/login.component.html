@@ -36,14 +36,24 @@
               <table class="table">
                   <tr>
                       <td class="text-center">
-                          <label class="control-label">{{user.name}}</label>
+                          <label class="control-label">{{user.displayName}}</label>
                       </td>
                   </tr>
                   <tr>
                       <td class="text-center">
-                          <label class="control-label">{{user.email || '(no email)'}}</label>
+                          <img src="{{user.photoURL}}" width="100px" height="100px"/> 
                       </td>
                   </tr>
+                  <tr>
+                        <td class="text-center">
+                            Phone number: <label class="control-label">{{user.phoenNumber || '(no phone number)'}}</label>
+                        </td>
+                    </tr>
+                  <tr>
+                      <td class="text-center">
+                          Email: <label class="control-label">{{user.email || '(no email)'}}</label>
+                      </td>
+                  </tr>                 
               </table>
               <div>
                   <input type="button" class="btn btn-warning" (click)="logout()" value="Logout" />

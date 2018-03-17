@@ -12,9 +12,14 @@
   <ul>
     <li>
       <a class="nav-item nav-link" [routerLink]="['/YearEndParty/Index']">
-        <i class="fa fa-file-powerpoint-o"></i>聊天室
+        <i class="fa fa-file-powerpoint-o"></i>買商品
       </a>
     </li>
+    <li>
+        <a class="nav-item nav-link" [routerLink]="['/YearEndParty/Index']">
+          <i class="fa fa-file-powerpoint-o"></i>查訂單
+        </a>
+      </li>
     <li *ngIf="!isAuth">
       <button class="btn btn-danger" [routerLink]="['/Login']">
         <i class="fa fa-google-plus"></i>
@@ -24,7 +29,7 @@
     <li *ngIf="isAuth">
       <button class="btn btn-danger" (click)="logout()">
         <i class="fa fa-google-plus"></i>
-        <span *ngIf="isAuth">{{user.name}}</span>
+        <span *ngIf="fbService.isAuth">{{fbService.User.displayName}}</span>
       </button>
     </li>
   </ul>
