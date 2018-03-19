@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from '../environments/environment';
 
 //Firebase
 import { AngularFireModule } from 'angularfire2';
@@ -19,13 +20,46 @@ import { LoginComponent } from './component/login/login.component';
 import { FbService } from './service/fb.service';
 import { ToastOptions } from 'ng2-toastr/src/toast-options';
 import { ToastConfig } from './class/toastr.config';
+import { ProdIndexComponent } from './component/prod-index/prod-index.component';
+import { ProdBookComponent } from './component/prod-book/prod-book.component';
+import { ProdToyComponent } from './component/prod-toy/prod-toy.component';
+import { ProdBookingComponent } from './component/prod-booking/prod-booking.component';
+import { ShopcartComponent } from './component/shopcart/shopcart.component';
+import { ProdCreateComponent } from './component/prod-create/prod-create.component';
+import { ProdEditComponent } from './component/prod-edit/prod-edit.component';
 
+//ngrx
+import { shopcartReducer } from './ngrx/shopcart.action';
+import { orderReducer } from './ngrx/order.action';
+import { orderEffects } from './ngrx/order.effects';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule} from '@ngrx/store-devtools';
+declare module '@ngrx/store' {
+  interface Action {
+    type: string;
+    payload?: any;
+  }
+}
+
+
+
+let rootReducer: any = {
+    shopcart: shopcartReducer,
+    order: orderReducer
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    // FirebaseConfigComponent
+    ProdIndexComponent,
+    ProdBookComponent,
+    ProdToyComponent,
+    ProdBookingComponent,
+    ShopcartComponent,
+    ProdCreateComponent,
+    ProdEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +70,12 @@ import { ToastConfig } from './class/toastr.config';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ToastModule.forRoot(),
+    StoreModule.forRoot({ count: rootReducer }),
+    EffectsModule.forRoot([orderEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10, // Retains last 25 states
+      logOnly: environment.production // Restrict extension to log-only mode
+    }),
     AppRoutingModule
   ],
   providers: [
