@@ -58,20 +58,20 @@ export class ProdCreateComponent implements OnInit {
         this.prod.TypeId = this.selectedProdType.id;
         this.prod.Type = this.selectedProdType.name;
 
-        this.prodService.create(this.prod).then(
-            () => {
+        // this.prodService.create(this.prod).then(
+        //     () => {
 
-                var rt = this.router;
-                swal(
-                    'Success!',
-                    'The data has been saved.',
-                    'success'
-                ).then(function () {
-                    //Return to Index
-                    rt.navigate(['Basic/Product/Index']);
-                });
+        //         var rt = this.router;
+        //         swal(
+        //             'Success!',
+        //             'The data has been saved.',
+        //             'success'
+        //         ).then(function () {
+        //             //Return to Index
+        //             rt.navigate(['Basic/Product/Index']);
+        //         });
 
-            });
+        //     });
     }
 
 

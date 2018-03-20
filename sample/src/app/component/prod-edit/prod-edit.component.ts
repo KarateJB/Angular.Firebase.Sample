@@ -32,17 +32,17 @@ export class ProdEditComponent implements OnInit {
         this.route.params.subscribe(params => {
             let prodId = params['id'];
 
-            this.prodService.get(prodId).then(
-                data => {
-                    this.prod = data;
-                    this.prodTypes.forEach(type => {
-                        if (type.id == this.prod.TypeId) {
-                            console.log('matched type is ' + type.name);
-                            this.selectedProdType = type;
-                        }
-                    })
+            // this.prodService.get(prodId).then(
+            //     data => {
+            //         this.prod = data;
+            //         this.prodTypes.forEach(type => {
+            //             if (type.id == this.prod.TypeId) {
+            //                 console.log('matched type is ' + type.name);
+            //                 this.selectedProdType = type;
+            //             }
+            //         })
 
-                });
+            //     });
         });
     }
 
@@ -52,19 +52,19 @@ export class ProdEditComponent implements OnInit {
         this.prod.TypeId = this.selectedProdType.id;
         this.prod.Type = this.selectedProdType.name;
 
-        this.prodService.update(this.prod).then(
-            () => {
+        // this.prodService.update(this.prod).then(
+        //     () => {
 
-                swal(
-                    'Success!',
-                    'The data has been saved.',
-                    'success'
-                ).then(function () {
-                    //Return to Index
-                    //rt.navigate(['Basic/Product/Index']);
-                });
+        //         swal(
+        //             'Success!',
+        //             'The data has been saved.',
+        //             'success'
+        //         ).then(function () {
+        //             //Return to Index
+        //             //rt.navigate(['Basic/Product/Index']);
+        //         });
 
-            });
+        //     });
     }
 
 

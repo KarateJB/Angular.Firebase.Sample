@@ -50,23 +50,23 @@ export class ProdBookComponent implements OnInit {
 
     //Initialize books
     private initBooks() {
-        this.productService.getBooks().then(data => {
-            this.books = data;
+        // this.productService.getBooks().then(data => {
+        //     this.books = data;
 
-            //Use shopping cart to update data
-            this.shopcart.subscribe(cart => {
-                this.books.forEach(item => {
-                    let storeItem = cart.items.find(x => x.id === item.Id);
-                    if (!storeItem) {
-                        this.itemNumbers[item.Id] = 0;
-                    }
-                    else {
-                        this.itemNumbers[item.Id] = storeItem.count;
-                    }
-                });
-            })
+        //     //Use shopping cart to update data
+        //     this.shopcart.subscribe(cart => {
+        //         this.books.forEach(item => {
+        //             let storeItem = cart.items.find(x => x.id === item.Id);
+        //             if (!storeItem) {
+        //                 this.itemNumbers[item.Id] = 0;
+        //             }
+        //             else {
+        //                 this.itemNumbers[item.Id] = storeItem.count;
+        //             }
+        //         });
+        //     })
 
-        })
+        // })
     }
 
     private setShopCart(data: ShopCart) {

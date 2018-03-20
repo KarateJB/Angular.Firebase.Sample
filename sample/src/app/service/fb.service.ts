@@ -35,7 +35,7 @@ export class FbService {
   }
 
   private _changeState(user: any = null) {
-    console.log(JSON.stringify(user));
+    // console.log(JSON.stringify(user));
     if (user) {
       this.isAuth = true;
       // this.user = this.getUserInfo(user);

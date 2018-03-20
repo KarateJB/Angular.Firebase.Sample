@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { User } from '@firebase/auth-types';
 import { FbService } from '../../service/fb.service';
+import { ProductService } from '../../service/product.service';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,11 @@ import { FbService } from '../../service/fb.service';
 })
 export class LoginComponent implements OnInit {
 
-    constructor(private fbService: FbService) {
+    constructor(private fbService: FbService, private prdService: ProductService) {
     }
 
     ngOnInit() {
-
+        this.prdService.getAll();
     }    
     
     login(provider: string){

@@ -51,22 +51,22 @@ export class ProdToyComponent implements OnInit {
 
     //Initialize books
     private initToys() {
-        this.productService.getToys().then(data => {
-            this.toys = data;
+        // this.productService.getToys().then(data => {
+        //     this.toys = data;
 
-            //Use shopping cart to update data
-            this.shopcart.subscribe(cart => {
-                this.toys.forEach(item => {
-                    let storeItem = cart.items.find(x => x.id === item.Id);
-                    if (!storeItem) {
-                        this.itemNumbers[item.Id] = 0;
-                    }
-                    else {
-                        this.itemNumbers[item.Id] = storeItem.count;
-                    }
-                });
-            })
-        })
+        //     //Use shopping cart to update data
+        //     this.shopcart.subscribe(cart => {
+        //         this.toys.forEach(item => {
+        //             let storeItem = cart.items.find(x => x.id === item.Id);
+        //             if (!storeItem) {
+        //                 this.itemNumbers[item.Id] = 0;
+        //             }
+        //             else {
+        //                 this.itemNumbers[item.Id] = storeItem.count;
+        //             }
+        //         });
+        //     })
+        // })
     }
 
     private setShopCart(data: ShopCart) {

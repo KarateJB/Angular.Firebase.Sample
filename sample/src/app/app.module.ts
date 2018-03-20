@@ -35,6 +35,8 @@ import { orderEffects } from './ngrx/order.effects';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { OrderService } from './service/order.service';
+import { ProductService } from './service/product.service';
 declare module '@ngrx/store' {
   interface Action {
     type: string;
@@ -81,7 +83,8 @@ let rootReducer: any = {
   providers: [
     { provide: ToastOptions, useClass: ToastConfig },
     FbService,
-
+    OrderService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
