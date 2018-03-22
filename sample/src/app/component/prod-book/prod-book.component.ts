@@ -12,13 +12,16 @@ import { ShopItem } from '../../class/ShopItem';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { Order } from '../../class/Order';
 
+const PROD_TYPE='Book';
 
 @Component({
     selector: 'product-books',
     templateUrl: './prod-book.component.html'
 })
 
+
 export class ProdBookComponent implements OnInit {
+
     private title: string;
     private toastrOptions: ToastOptions;
     private books: Product[];
@@ -50,23 +53,23 @@ export class ProdBookComponent implements OnInit {
 
     //Initialize books
     private initBooks() {
-        // this.productService.getBooks().then(data => {
-        //     this.books = data;
+        this.productService.getByType(PROD_TYPE).subscribe(data => {
+            this.books = data;
 
-        //     //Use shopping cart to update data
-        //     this.shopcart.subscribe(cart => {
-        //         this.books.forEach(item => {
-        //             let storeItem = cart.items.find(x => x.id === item.Id);
-        //             if (!storeItem) {
-        //                 this.itemNumbers[item.Id] = 0;
-        //             }
-        //             else {
-        //                 this.itemNumbers[item.Id] = storeItem.count;
-        //             }
-        //         });
-        //     })
+            //Use shopping cart to update data
+            this.shopcart.subscribe(cart => {
+                this.books.forEach(item => {
+                    let storeItem = cart.items.find(x => x.id === item.Id);
+                    if (!storeItem) {
+                        this.itemNumbers[item.Id] = 0;
+                    }
+                    else {
+                        this.itemNumbers[item.Id] = storeItem.count;
+                    }
+                });
+            })
 
-        // })
+        })
     }
 
     private setShopCart(data: ShopCart) {

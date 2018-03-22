@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.prdService.getAll();
+
     }    
     
     login(provider: string){

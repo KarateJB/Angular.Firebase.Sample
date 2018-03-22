@@ -23,7 +23,7 @@ export class ProductService {
     }
 
     //Query data from firebase
-    private _queryProducts() {
+    private _queryProducts(): Observable<Product[]> {
 
         this.af.authState.subscribe(
             user => {
@@ -34,14 +34,11 @@ export class ProductService {
             error => { }
         );
 
-        return this.afDb.list('/Demo/products').valueChanges().
-            map(x => {
-                return <Product[]>x;
-            });
+        return this.afDb.list<Product>('/Demo/products').valueChanges();
     }
 
     //Get Product types list
-    public getProductTypes() {
+    public getProductTypes(): ProductType[] {
         let prodTypes: ProductType[] = [];
 
         //Get name-value pairs from ProductTypeEnum
@@ -56,27 +53,17 @@ export class ProductService {
         return prodTypes;
     }
 
-    public getByKey(key: string) {
-        return this.afDb.object('/Demo/products/' + key).valueChanges();
+    public getByKey(key: string): Observable<Product> {
+        return this.afDb.object<Product>('/Demo/products/' + key).valueChanges().take(1).map(x=><Product>x);
     }
 
-    public get(id: string) {
-        let arr = this._queryProducts().subscribe(data => {
-            return data.filter(x => x.Id == id);
-        });
+    public getById(id: string): Observable<Product> {
+        return this._queryProducts().map(arr => arr.filter(prod => prod.Id === id)[0]);
     }
 
-    //Get books
-    public getBooks() {
-
-    }
-    //Get toys
-    public getToys() {
-
-    }
-    //Get toys
-    public getMusic() {
-
+    //Get products by type: Toy, Book, Music
+    public getByType(type: string): Observable<Product[]> {
+       return this._queryProducts().map(arr => arr.filter(x => x.Type == 'Book'));
     }
 
     //Create new product
