@@ -76,6 +76,7 @@ export class ProdBookComponent implements OnInit {
     }
 
     private setShopCart(data: ShopCart) {
+        // console.info(data);
         this.toastr.info(data.cnt + ' items, total $' + data.sum, 'Shopping Cart', this.toastrOptions);
     }
 

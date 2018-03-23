@@ -6,6 +6,7 @@ import { Order } from '../class/Order';
 import { SAVE, SAVED, CANCEL, CANCELLED, COMPLETE } from './order.action';
 import { OrderService } from '../service/order.service';
 import { AppUtility } from '../class/AppUtility';
+import { OrderAction } from '../class/OrderAction';
 
 
 @Injectable()
@@ -21,11 +22,12 @@ export class orderEffects {
         .ofType(SAVE)
         .switchMap((action) => {
 
+            let oa = <OrderAction>action;
             let payload: Order = {
                 id: AppUtility.generateUUID(),
                 status: "Saved!!",
-                date: action.payload.date,
-                items: action.payload.items
+                date: oa.payload.date,
+                items: oa.payload.items
             };
 
             //Save the order to backend, database ...etc Or get something
@@ -38,8 +40,9 @@ export class orderEffects {
     @Effect() saved$ = this.action$
         .ofType(SAVED).delay(1000)
         .switchMap((action) => {
-            action.payload.status = "Complete";
-            return Observable.of({ 'type': COMPLETE, 'payload': action.payload });
+            let oa = <OrderAction>action;
+            oa.payload.status = "Complete";
+            return Observable.of({ 'type': COMPLETE, 'payload': oa.payload });
         });
 
 

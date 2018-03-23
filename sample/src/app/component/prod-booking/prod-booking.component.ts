@@ -8,6 +8,9 @@ import { PUSH,PULL,CLEAR } from '../../ngrx/shopcart.action';
 import { IShopCart } from '../../interface/IShopCart';
 import { ShopCart } from '../../class/ShopCart';
 import { ShopItem } from '../../class/ShopItem';
+import { ShopcartAction } from '../../class/ShopcartAction';
+
+// import * as Shopcart from '../../ngrx/shopcart.action';
 
 
 @Component({
@@ -57,9 +60,13 @@ export class ProdBookingComponent implements OnInit, OnChanges {
 
     private increment() {
         this.shopItem.count += 1;
-        this.store.dispatch({ type: PUSH, payload: this.shopItem });
+
+        let action = new ShopcartAction(PUSH, this.shopItem);
+        console.info(action);
+        this.store.dispatch(action);
 
         this.shopcart.subscribe(data => {
+            console.log(data);
             this.emitEvents.emit(data);
         });
 
