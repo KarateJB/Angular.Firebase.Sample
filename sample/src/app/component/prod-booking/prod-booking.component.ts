@@ -49,10 +49,6 @@ export class ProdBookingComponent implements OnInit, OnChanges {
         this.shopItem = new ShopItem();
         //Get the reducer
         this.shopcart = store.select<IShopCart>(x=>x.shopcart);        
-        this.shopcart.subscribe(data=>{
-            console.log(data);
-
-        });
     }
 
 

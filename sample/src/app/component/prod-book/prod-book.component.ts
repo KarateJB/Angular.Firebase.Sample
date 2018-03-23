@@ -11,6 +11,7 @@ import { ShopCart } from '../../class/ShopCart';
 import { ShopItem } from '../../class/ShopItem';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { Order } from '../../class/Order';
+import { IStore } from '../../interface/IStore';
 
 const PROD_TYPE = 'Book';
 
@@ -32,7 +33,7 @@ export class ProdBookComponent implements OnInit {
     constructor(
         private router: Router,
         private productService: ProductService,
-        private store: Store<IShopCart>,
+        private store: Store<IStore>,
         private toastr: ToastsManager,
         private vRef: ViewContainerRef) {
 
@@ -43,7 +44,7 @@ export class ProdBookComponent implements OnInit {
         this.productService = productService;
 
         //Get the reducer
-        this.shopcart = this.store.select(x => x);
+        this.shopcart = this.store.select<IShopCart>(x => x.shopcart);
     }
 
     ngOnInit() {
