@@ -65,6 +65,16 @@ gulp.task('copy-sweetalert2', function () {
   }).pipe(gulp.dest(rootPath.packageLib + '/sweetalert2/'));
 });
 
+//ng2-toastr
+gulp.task('copy-ng2-toastr', function () {
+  return gulp.src([
+    rootPath.nmSrc + "/ng2-toastr/bundles/ng2-toastr.min.css",
+    rootPath.nmSrc + "/ng2-toastr/bundles/ng2-toastr.min.js",
+  ], {
+      base: rootPath.nmSrc + '/ng2-toastr/bundles/'
+  }).pipe(gulp.dest(rootPath.packageLib + '/ng2-toastr/'));
+});
+
 
 //font-awesome
 gulp.task('copy-fa-css', function () {
@@ -107,6 +117,7 @@ gulp.task("copy-all", [
   "copy-bootstrap",
   "copy-jquery",  
   "copy-sweetalert2",
+  "copy-ng2-toastr",
   "copy-fa-css",
   "copy-fa-fonts",
   "copy-angularfire2",
