@@ -9,12 +9,12 @@ export const PUSH = 'PUSH';
 export const PULL = 'PULL';
 export const CLEAR = 'CLEAR';
 
-// export function shopcartReducer(state: ShopCart = new ShopCart(), action: Action) {
+// export function shopcartReducer(state: ShopCart = new ShopCart(), action: ShopcartAction) {
 export const shopcartReducer: ActionReducer<IShopCart> = (state: ShopCart = new ShopCart(), action: ShopcartAction) => {
+    console.log('Current action type: ' + action.type);
+    console.log(action.payload);
     switch (action.type) {
         case PUSH:
-            console.log('PUSH!');
-            console.log(action.payload);
             return pushToCart(state, action.payload);
 
         case PULL:

@@ -37,6 +37,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { OrderService } from './service/order.service';
 import { ProductService } from './service/product.service';
+import { IStore } from './interface/IStore';
 
 // declare module '@ngrx/store' {
 //   interface Action {
@@ -45,9 +46,7 @@ import { ProductService } from './service/product.service';
 //   }
 // }
 
-
-
-let rootReducer: any = {
+let reducers: IStore = {
     shopcart: shopcartReducer,
     order: orderReducer
 }
@@ -73,7 +72,7 @@ let rootReducer: any = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ToastModule.forRoot(),
-    StoreModule.forRoot({ count: rootReducer }),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([orderEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 10, // Retains last 25 states

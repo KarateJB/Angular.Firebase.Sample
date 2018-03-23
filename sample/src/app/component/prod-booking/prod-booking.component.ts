@@ -9,6 +9,7 @@ import { IShopCart } from '../../interface/IShopCart';
 import { ShopCart } from '../../class/ShopCart';
 import { ShopItem } from '../../class/ShopItem';
 import { ShopcartAction } from '../../class/ShopcartAction';
+import { IStore } from '../../interface/IStore';
 
 // import * as Shopcart from '../../ngrx/shopcart.action';
 
@@ -40,14 +41,18 @@ export class ProdBookingComponent implements OnInit, OnChanges {
     constructor(
         private router: Router,
         private productService: ProductService,
-        private store: Store<IShopCart>
+        private store: Store<IStore>
     ) {
         this.productService = productService;
 
         //Create ShopItem
         this.shopItem = new ShopItem();
         //Get the reducer
-        this.shopcart = store.select(x=>x);        
+        this.shopcart = store.select<IShopCart>(x=>x.shopcart);        
+        this.shopcart.subscribe(data=>{
+            console.log(data);
+
+        });
     }
 
 
@@ -62,7 +67,6 @@ export class ProdBookingComponent implements OnInit, OnChanges {
         this.shopItem.count += 1;
 
         let action = new ShopcartAction(PUSH, this.shopItem);
-        console.info(action);
         this.store.dispatch(action);
 
         this.shopcart.subscribe(data => {
