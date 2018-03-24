@@ -67,7 +67,7 @@ export class ProductService {
 
     //Get products by type: Toy, Book, Music
     public getByType(type: string): Observable<Product[]> {
-        return this._queryProducts().map(arr => arr.filter(x => x.Type == 'Book'));
+        return this._queryProducts().map(arr => arr.filter(x => x.Type == type));
     }
 
     //Create new product

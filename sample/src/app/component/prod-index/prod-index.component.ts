@@ -13,16 +13,25 @@ export class ProdIndexComponent implements OnInit {
   ngOnInit() {
   }
 
-   private goToCreate(){
-     this.router.navigate(['Product/Create']);
-   }
+  private goToCreate() {
+    this.router.navigate(['Product/Create']);
+  }
 
-  private goToBooks() {
-    this.router.navigate(['Product/Index', 'Books']);
+  private goToProduct(type: string) {
+    switch (type.toLowerCase()) {
+      case 'book':
+        this.router.navigate(['Product/Index', 'Books']);
+        break;
+      case 'toy':
+        this.router.navigate(['Product/Index', 'Toys']);
+        break;
+      default:
+        this.router.navigate(['Product/Index']);      
+        break;
+    }
   }
 
   private goToToys() {
-    this.router.navigate(['Product/Index', 'Toys']);
   }
 
   private goToShopcart() {

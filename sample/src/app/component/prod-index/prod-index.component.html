@@ -13,11 +13,11 @@
 
 <div>
   <div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-secondary" (click)="goToBooks()">Books</button>
-    <button type="button" class="btn btn-secondary" (click)="goToToys()">Toys</button>
+    <button type="button" class="btn btn-secondary" (click)="goToProduct('Book')">Books</button>
+    <button type="button" class="btn btn-secondary" (click)="goToProduct('Toy')">Toys</button>
   </div>
   <router-outlet></router-outlet>
-  <div class="shipcart" (click)="goToShopcart()">
+  <div class="shopcart" (click)="goToShopcart()">
     <i class="fa fa-shopping-cart fa-3x"></i>
   </div>
 </div>

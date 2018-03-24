@@ -1,10 +1,9 @@
 <div>
-
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th class="text-center">ID</th>
-                <th class="text-center">Title</th>
+                <th  class="text-center">ID</th>
+                <th  class="text-center">Title</th>
                 <th class="text-center">Price</th>
                 <th>Shopping Cart</th>
                 <th></th>
@@ -16,9 +15,9 @@
             <td>{{prod.Price}}</td>
             <td><product-booking [product]="prod" [default-number]="itemNumbers[prod.Id]" (emit-events)="setShopCart($event)"></product-booking></td>
             <td>
-                <input type="button" value="Edit" class="btn btn-info" (click)="edit(prod)" />
+                <input type="button" value="Edit" class="btn btn-info" (click)="edit(prod.Id)" />
                 &nbsp;
-                <input type="button" value="Remove" class="btn btn-danger" (click)="remove(prod)" />
+                <input type="button" value="Remove" class="btn btn-danger" (click)="remove(prod.Id)" />
             </td>
         </tr>
     </table>

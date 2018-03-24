@@ -9,10 +9,9 @@ import { IShopCart } from '../../interface/IShopCart';
 import { ShopCart } from '../../class/ShopCart';
 import { ShopItem } from '../../class/ShopItem';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { IStore } from '../../interface/IStore';
 
-
-declare var swal: any; //SweetAlert2 typings definition
-
+const PROD_TYPE = 'Toy';
 
 @Component({
     selector: 'product-toys',
@@ -26,12 +25,12 @@ export class ProdToyComponent implements OnInit {
     private toys: Product[];
 
     private itemNumbers: any;
-    private shopcart: Observable<IShopCart>;
+    private shopcart$: Observable<IShopCart>;
 
     constructor(
         private router: Router,
         private productService: ProductService,
-        private store: Store<IShopCart>,
+        private store: Store<IStore>,
         private toastr: ToastsManager,
         private vRef: ViewContainerRef) {
 
@@ -42,38 +41,49 @@ export class ProdToyComponent implements OnInit {
         this.productService = productService;
 
         //Get the reducer
-        this.shopcart = this.store.select(x => x); 
+        this.shopcart$ = this.store.select<IShopCart>(x => x.shopcart);
     }
 
     ngOnInit() {
-        this.initToys();
+        this.initBooks();
     }
 
-    //Initialize books
-    private initToys() {
-        // this.productService.getToys().then(data => {
-        //     this.toys = data;
 
-        //     //Use shopping cart to update data
-        //     this.shopcart.subscribe(cart => {
-        //         this.toys.forEach(item => {
-        //             let storeItem = cart.items.find(x => x.id === item.Id);
-        //             if (!storeItem) {
-        //                 this.itemNumbers[item.Id] = 0;
-        //             }
-        //             else {
-        //                 this.itemNumbers[item.Id] = storeItem.count;
-        //             }
-        //         });
-        //     })
-        // })
+    //Initialize books
+    private initBooks() {
+        this.productService.getByType(PROD_TYPE).subscribe(data => {
+            this.toys = data;
+
+            //Use shopping cart to update data
+            this.shopcart$.subscribe(cart => {
+                this.toys.forEach(item => {
+
+                    if (cart.items) {
+                        let storeItem = cart.items.find(x => x.id === item.Id);
+                        if (!storeItem) {
+                            this.itemNumbers[item.Id] = 0;
+                        }
+                        else {
+                            this.itemNumbers[item.Id] = storeItem.count;
+                        }
+                    }
+                });
+            })
+
+        })
     }
 
     private setShopCart(data: ShopCart) {
         this.toastr.info(data.cnt + ' items, total $' + data.sum, 'Shopping Cart', this.toastrOptions);
     }
 
+    private edit(id: string){
+        this.router.navigate(['Product/Edit/', id]);
+    }
 
-
+    private remove(id: string){
+        this.productService.remove(id);
+    }
 }
+
 
