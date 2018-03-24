@@ -70,7 +70,6 @@ export class ShopcartComponent implements OnInit {
     constructor(
         private router: Router,
         private af: AngularFireAuth,
-        private shopcartStore: Store<IShopCart>,
         private store: Store<IStore>
     ) {
         //Get the reducer
@@ -101,26 +100,21 @@ export class ShopcartComponent implements OnInit {
             };
 
             this.store.dispatch({ type: SAVE, payload: orderItem });
+
+            this.order$.subscribe(ord => {
+            
+                console.log('STATUS=' + ord.status);
+                this.states.push(ord.status);
+    
+            });
         });
 
 
-        this.order$.subscribe(data => {
-
-            let state = this._getState(this.store);
-            this.states.push(state.order.status);
-
-        });
+        
     }
 
     private goToProducts() {
         this.router.navigate(['Product/Index']);
-    }
-
-    private _getState(store: Store<IStore>) {
-
-        let state: any;
-        store.take(1).subscribe(s => state = s);
-        return state;
     }
 }
 

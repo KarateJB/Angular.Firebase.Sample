@@ -3,6 +3,7 @@ import { Action, ActionReducer } from '@ngrx/store';
 import { IOrder } from '../interface/IOrder';
 import { Order } from '../class/Order';
 import { ShopItem } from '../class/ShopItem';
+import { OrderAction } from '../class/OrderAction';
 
 export const SAVE = 'SAVE';
 export const SAVED = 'SAVED';
@@ -10,15 +11,15 @@ export const CANCEL = 'CANCEL';
 export const CANCELLED = 'CANCELLED';
 export const COMPLETE = 'COMPLETE';
 
-export const orderReducer: ActionReducer<IOrder> = (state: Order = new Order(), action: Action) => {
+export const orderReducer: ActionReducer<IOrder> = (state: Order = new Order(), action: OrderAction) => {
     switch (action.type) {
 
         case SAVE:
-            // state = action.payload;
+            state = action.payload;
             return state;
 
         case SAVED:
-            // state = action.payload;
+            state = action.payload;
             return state;
 
         case CANCEL:
@@ -28,7 +29,7 @@ export const orderReducer: ActionReducer<IOrder> = (state: Order = new Order(), 
             return state;
 
         case COMPLETE:
-            // state = action.payload;
+            state = action.payload;
             return state;
 
         default:
