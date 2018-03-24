@@ -1,7 +1,7 @@
 export class Product {
-    Id: string;
-    TypeId: string;
-    Type: string; //Book,Toy,Music
-    Title: string;
-    Price: number;
+    id: string;
+    typeId: string;
+    type: string; //Book,Toy,Music
+    title: string;
+    price: number;
 }

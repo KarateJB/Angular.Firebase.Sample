@@ -55,9 +55,9 @@ export class ProdCreateComponent implements OnInit {
 
     //Save!
     private save() {
-        this.prod.Id = AppUtility.generateUUID();
-        this.prod.TypeId = this.selectedProdType.id;
-        this.prod.Type = this.selectedProdType.name;
+        this.prod.id = AppUtility.generateUUID();
+        this.prod.typeId = this.selectedProdType.id;
+        this.prod.type = this.selectedProdType.name;
           
         this.prodService.create(this.prod).then(
             () => {

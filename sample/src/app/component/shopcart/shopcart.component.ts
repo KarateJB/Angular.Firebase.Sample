@@ -1,3 +1,5 @@
+import { User } from '@firebase/auth-types';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, Pipe, PipeTransform, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -10,6 +12,7 @@ import { Order } from '../../class/Order';
 import { ShopCart } from '../../class/ShopCart';
 import { ShopItem } from '../../class/ShopItem';
 import { IStore } from '../../interface/IStore';
+import { AppUtility } from '../../class/AppUtility';
 
 
 declare var swal: any; //SweetAlert2 typings definition
@@ -25,7 +28,7 @@ interface AppState {
     providers: [],
     template: `
                    <div>
-                      <button class='btn btn-success' (click)="sendOrder()"><i class="fa fa-save"></i> Send Order </button>
+                      <button class='btn btn-success' [disabled]='isDisableSendOrder' (click)="sendOrder()"><i class="fa fa-save"></i> Send Order </button>
                       <button class="btn btn-default" (click)="goToProducts()"><i class="fa fa-ra"></i> Back </button>
                       <span *ngFor="let st of states">
                          <i class="fa fa-arrow-circle-right"></i>{{st}}
@@ -61,9 +64,12 @@ export class ShopcartComponent implements OnInit {
     private shopcart$: Observable<IShopCart>;
     private order$: Observable<IOrder>;
     private states: string[] = [];
+    private loginUser: User; //Firebase User
+    private isDisableSendOrder: boolean = true;
 
     constructor(
         private router: Router,
+        private af: AngularFireAuth,
         private shopcartStore: Store<IShopCart>,
         private store: Store<IStore>
     ) {
@@ -73,7 +79,13 @@ export class ShopcartComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.af.authState.subscribe(
+            user => {
+                this.loginUser = user;
+                this.isDisableSendOrder = false;
+            },
+            error => console.trace(error)
+          );
     }
 
     private sendOrder() {
@@ -81,7 +93,8 @@ export class ShopcartComponent implements OnInit {
         this.shopcart$.subscribe(data => {
             let date = new Date();
             let orderItem: Order = {
-                id: '',
+                id: AppUtility.generateUUID(),
+                customer: this.loginUser.email, 
                 status: 'Saving',
                 date: date.toLocaleDateString().concat(' ', date.toLocaleTimeString()),
                 items: data.items
@@ -94,7 +107,6 @@ export class ShopcartComponent implements OnInit {
         this.order$.subscribe(data => {
 
             let state = this._getState(this.store);
-            console.log("Adding " + state.order.status + " to array!");
             this.states.push(state.order.status);
 
         });

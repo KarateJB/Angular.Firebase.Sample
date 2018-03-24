@@ -53,10 +53,10 @@ export class ProdBookingComponent implements OnInit, OnChanges {
 
 
     public ngOnChanges() {
-        this.shopItem.id = this.product.Id;
-        this.shopItem.title = this.product.Title;
+        this.shopItem.id = this.product.id;
+        this.shopItem.title = this.product.title;
         this.shopItem.count = this.defaultNumber ? this.defaultNumber : 0;
-        this.shopItem.price = this.product.Price;
+        this.shopItem.price = this.product.price;
     }
 
     private increment() {
@@ -66,7 +66,6 @@ export class ProdBookingComponent implements OnInit, OnChanges {
         this.store.dispatch(action);
 
         this.shopcart$.subscribe(data => {
-            console.log(data);
             this.emitEvents.emit(data);
         });
 

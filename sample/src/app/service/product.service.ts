@@ -62,18 +62,18 @@ export class ProductService {
     }
 
     public getById(id: string): Observable<Product> {
-        return this._queryProducts().map(arr => arr.filter(prod => prod.Id === id)[0]);
+        return this._queryProducts().map(arr => arr.filter(prod => prod.id === id)[0]);
     }
 
     //Get products by type: Toy, Book, Music
     public getByType(type: string): Observable<Product[]> {
-        return this._queryProducts().map(arr => arr.filter(x => x.Type == type));
+        return this._queryProducts().map(arr => arr.filter(x => x.type == type));
     }
 
     //Create new product
     public create(prod: Product) {
         //Set UUID to id
-        let item$ = this.afDb.object('/Demo/products/' + prod.Id);
+        let item$ = this.afDb.object('/Demo/products/' + prod.id);
         return item$.set(prod);
     }
 
@@ -81,7 +81,7 @@ export class ProductService {
     public update(prod: Product) {
         // let item$ = this.afDb.list('/Demo/products/' + prod.Id);
         // return item$.update(prod.Id, prod);
-        let item$ = this.afDb.object('/Demo/products/' + prod.Id);
+        let item$ = this.afDb.object('/Demo/products/' + prod.id);
         return item$.update(prod);
     }
 

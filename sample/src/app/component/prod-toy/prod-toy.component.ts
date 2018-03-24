@@ -59,12 +59,12 @@ export class ProdToyComponent implements OnInit {
                 this.toys.forEach(item => {
 
                     if (cart.items) {
-                        let storeItem = cart.items.find(x => x.id === item.Id);
+                        let storeItem = cart.items.find(x => x.id === item.id);
                         if (!storeItem) {
-                            this.itemNumbers[item.Id] = 0;
+                            this.itemNumbers[item.id] = 0;
                         }
                         else {
-                            this.itemNumbers[item.Id] = storeItem.count;
+                            this.itemNumbers[item.id] = storeItem.count;
                         }
                     }
                 });

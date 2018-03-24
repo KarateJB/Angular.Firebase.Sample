@@ -15,12 +15,10 @@ export const orderReducer: ActionReducer<IOrder> = (state: Order = new Order(), 
 
         case SAVE:
             // state = action.payload;
-            console.log("Order's state :" + state.status);
             return state;
 
         case SAVED:
             // state = action.payload;
-            console.log("Order's state :" + state.status);
             return state;
 
         case CANCEL:
@@ -31,7 +29,6 @@ export const orderReducer: ActionReducer<IOrder> = (state: Order = new Order(), 
 
         case COMPLETE:
             // state = action.payload;
-            console.log("Order's state :" + state.status);
             return state;
 
         default:

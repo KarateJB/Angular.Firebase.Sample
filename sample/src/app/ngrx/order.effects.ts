@@ -25,13 +25,15 @@ export class orderEffects {
             let oa = <OrderAction>action;
             let payload: Order = {
                 id: AppUtility.generateUUID(),
+                customer: oa.payload.customer,
                 status: "Saved!!",
                 date: oa.payload.date,
                 items: oa.payload.items
             };
 
             //Save the order to backend, database ...etc Or get something
-            return this.orderService.save(payload).delay(1000).switchMap(() => {
+            let create$ = Observable.fromPromise(this.orderService.create(payload));
+            return create$.delay(1000).switchMap(() => {
                 return Observable.of({ 'type': SAVED, 'payload': payload });
             });
 

@@ -1,8 +1,9 @@
 import { IOrder } from '../interface/IOrder';
 import { ShopItem } from '../class/ShopItem';
 
-export class Order implements IOrder {
+export class Order implements IOrder{
     id: string;
+    customer: string;
     status: string;
     date: string;
     items: ShopItem[];

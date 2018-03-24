@@ -10,14 +10,14 @@
             </tr>
         </thead>
         <tr *ngFor="let prod of toys">
-            <td>{{prod.Id}}</td>
-            <td>{{prod.Title}}</td>
-            <td>{{prod.Price}}</td>
-            <td><product-booking [product]="prod" [default-number]="itemNumbers[prod.Id]" (emit-events)="setShopCart($event)"></product-booking></td>
+            <td>{{prod.id}}</td>
+            <td>{{prod.title}}</td>
+            <td>{{prod.price}}</td>
+            <td><product-booking [product]="prod" [default-number]="itemNumbers[prod.id]" (emit-events)="setShopCart($event)"></product-booking></td>
             <td>
-                <input type="button" value="Edit" class="btn btn-info" (click)="edit(prod.Id)" />
+                <input type="button" value="Edit" class="btn btn-info" (click)="edit(prod.id)" />
                 &nbsp;
-                <input type="button" value="Remove" class="btn btn-danger" (click)="remove(prod.Id)" />
+                <input type="button" value="Remove" class="btn btn-danger" (click)="remove(prod.id)" />
             </td>
         </tr>
     </table>

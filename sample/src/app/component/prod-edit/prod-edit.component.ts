@@ -35,7 +35,7 @@ export class ProdEditComponent implements OnInit {
             this.prodService.getById(prodId).subscribe(data => {
                 this.prod = data;
                 this.prodTypes.forEach(type => {
-                    if (type.id == this.prod.TypeId) {
+                    if (type.id == this.prod.typeId) {
                         this.selectedProdType = type;
                     }
                 })
@@ -47,8 +47,8 @@ export class ProdEditComponent implements OnInit {
     //Save!
     private save() {
 
-        this.prod.TypeId = this.selectedProdType.id;
-        this.prod.Type = this.selectedProdType.name;
+        this.prod.typeId = this.selectedProdType.id;
+        this.prod.type = this.selectedProdType.name;
 
         this.prodService.update(this.prod).then(
             () => {
