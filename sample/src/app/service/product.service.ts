@@ -35,6 +35,10 @@ export class ProductService {
         );
 
         return this.afDb.list<Product>('/Demo/products').valueChanges();
+        // return this.afDb.list<Product>('/Demo/products').snapshotChanges().map(changes => {
+        //     return changes.map(c => ({ 
+        //         key: c.payload.key,...c.payload.val() }));
+        //   });
     }
 
     //Get Product types list
@@ -54,7 +58,7 @@ export class ProductService {
     }
 
     public getByKey(key: string): Observable<Product> {
-        return this.afDb.object<Product>('/Demo/products/' + key).valueChanges().take(1).map(x=><Product>x);
+        return this.afDb.object<Product>('/Demo/products/' + key).valueChanges().take(1).map(x => <Product>x);
     }
 
     public getById(id: string): Observable<Product> {
@@ -63,26 +67,22 @@ export class ProductService {
 
     //Get products by type: Toy, Book, Music
     public getByType(type: string): Observable<Product[]> {
-       return this._queryProducts().map(arr => arr.filter(x => x.Type == 'Book'));
+        return this._queryProducts().map(arr => arr.filter(x => x.Type == 'Book'));
     }
 
     //Create new product
     public create(prod: Product) {
         //Set UUID to id
-        let itemObservable = this.afDb.object('/Demo/products/' + prod.Id);
-        return itemObservable.set(prod);
+        let item$ = this.afDb.object('/Demo/products/' + prod.Id);
+        return item$.set(prod);
     }
 
     //Update a product
     public update(prod: Product) {
-
-        return new Promise(
-            resolve => {
-                let item = this.afDb.object('/Demo/products/' + prod.Id);
-                item.set(prod);
-                resolve();
-            }
-        )
+        // let item$ = this.afDb.list('/Demo/products/' + prod.Id);
+        // return item$.update(prod.Id, prod);
+        let item$ = this.afDb.object('/Demo/products/' + prod.Id);
+        return item$.update(prod);
     }
 
     //Remove all products
@@ -91,7 +91,7 @@ export class ProductService {
     }
 
     //Remove a product
-    public remove(prod: Product) {
-        return this.afDb.object('/Demo/products/' + prod.Id).remove();
+    public remove(id: string) {
+        return this.afDb.object('/Demo/products/' + id).remove();
     }
 }

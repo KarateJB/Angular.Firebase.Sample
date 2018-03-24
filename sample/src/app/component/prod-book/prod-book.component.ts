@@ -77,8 +77,15 @@ export class ProdBookComponent implements OnInit {
     }
 
     private setShopCart(data: ShopCart) {
-        // console.info(data);
         this.toastr.info(data.cnt + ' items, total $' + data.sum, 'Shopping Cart', this.toastrOptions);
+    }
+
+    private edit(id: string){
+        this.router.navigate(['Product/Edit/', id]);
+    }
+
+    private remove(id: string){
+        this.productService.remove(id);
     }
 
 

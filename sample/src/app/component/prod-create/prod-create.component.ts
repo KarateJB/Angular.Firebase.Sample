@@ -4,6 +4,7 @@ import {ProductService} from '../../service/product.service';
 import {Product} from '../../class/Product';
 import {ProductType} from '../../class/ProductType';
 import { ProdTypeEnum } from '../../enum/ProdTypeEnum';
+import { AppUtility } from '../../class/AppUtility';
 
 
 declare var swal: any; //SweetAlert2 typings definition
@@ -54,24 +55,24 @@ export class ProdCreateComponent implements OnInit {
 
     //Save!
     private save() {
-
+        this.prod.Id = AppUtility.generateUUID();
         this.prod.TypeId = this.selectedProdType.id;
         this.prod.Type = this.selectedProdType.name;
+          
+        this.prodService.create(this.prod).then(
+            () => {
 
-        // this.prodService.create(this.prod).then(
-        //     () => {
+                var rt = this.router;
+                swal(
+                    'Success!',
+                    'The data has been saved.',
+                    'success'
+                ).then(function () {
+                    //Return to Index
+                    rt.navigate(['Product/Index']);
+                });
 
-        //         var rt = this.router;
-        //         swal(
-        //             'Success!',
-        //             'The data has been saved.',
-        //             'success'
-        //         ).then(function () {
-        //             //Return to Index
-        //             rt.navigate(['Basic/Product/Index']);
-        //         });
-
-        //     });
+            });
     }
 
 

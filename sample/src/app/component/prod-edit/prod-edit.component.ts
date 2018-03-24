@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {ProductService} from '../../service/product.service';
-import {Product} from '../../class/Product';
-import {ProductType} from '../../class/ProductType';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../service/product.service';
+import { Product } from '../../class/Product';
+import { ProductType } from '../../class/ProductType';
 
 declare var swal: any; //SweetAlert2 typings definition
 
@@ -32,17 +32,15 @@ export class ProdEditComponent implements OnInit {
         this.route.params.subscribe(params => {
             let prodId = params['id'];
 
-            // this.prodService.get(prodId).then(
-            //     data => {
-            //         this.prod = data;
-            //         this.prodTypes.forEach(type => {
-            //             if (type.id == this.prod.TypeId) {
-            //                 console.log('matched type is ' + type.name);
-            //                 this.selectedProdType = type;
-            //             }
-            //         })
+            this.prodService.getById(prodId).subscribe(data => {
+                this.prod = data;
+                this.prodTypes.forEach(type => {
+                    if (type.id == this.prod.TypeId) {
+                        this.selectedProdType = type;
+                    }
+                })
 
-            //     });
+            })
         });
     }
 
@@ -52,25 +50,26 @@ export class ProdEditComponent implements OnInit {
         this.prod.TypeId = this.selectedProdType.id;
         this.prod.Type = this.selectedProdType.name;
 
-        // this.prodService.update(this.prod).then(
-        //     () => {
+        this.prodService.update(this.prod).then(
+            () => {
 
-        //         swal(
-        //             'Success!',
-        //             'The data has been saved.',
-        //             'success'
-        //         ).then(function () {
-        //             //Return to Index
-        //             //rt.navigate(['Basic/Product/Index']);
-        //         });
+                var rt = this.router;
+                swal(
+                    'Success!',
+                    'The data has been saved.',
+                    'success'
+                ).then(function () {
+                    //Return to Index
+                    rt.navigate(['Product/Index']);
+                });
 
-        //     });
+            });
     }
 
 
     //Back to list (Show list)
     private backToList() {
-        this.router.navigate(['Basic/Product/Index']);
+        this.router.navigate(['Product/Index']);
     }
 }
 

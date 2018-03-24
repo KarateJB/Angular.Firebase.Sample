@@ -11,8 +11,6 @@ export const CLEAR = 'CLEAR';
 
 // export function shopcartReducer(state: ShopCart = new ShopCart(), action: ShopcartAction) {
 export const shopcartReducer: ActionReducer<IShopCart> = (state: ShopCart = new ShopCart(), action: ShopcartAction) => {
-    console.log('Current action type: ' + action.type);
-    console.log(action.payload);
     switch (action.type) {
         case PUSH:
             return pushToCart(state, action.payload);
