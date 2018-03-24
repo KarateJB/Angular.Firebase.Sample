@@ -28,7 +28,7 @@ export class ProdBookComponent implements OnInit {
     private books: Product[];
 
     private itemNumbers: any;
-    private shopcart: Observable<IShopCart>;
+    private shopcart$: Observable<IShopCart>;
 
     constructor(
         private router: Router,
@@ -44,7 +44,7 @@ export class ProdBookComponent implements OnInit {
         this.productService = productService;
 
         //Get the reducer
-        this.shopcart = this.store.select<IShopCart>(x => x.shopcart);
+        this.shopcart$ = this.store.select<IShopCart>(x => x.shopcart);
     }
 
     ngOnInit() {
@@ -58,7 +58,7 @@ export class ProdBookComponent implements OnInit {
             this.books = data;
 
             //Use shopping cart to update data
-            this.shopcart.subscribe(cart => {
+            this.shopcart$.subscribe(cart => {
                 this.books.forEach(item => {
 
                     if (cart.items) {

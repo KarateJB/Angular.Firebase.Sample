@@ -36,7 +36,7 @@ export class ProdBookingComponent implements OnInit, OnChanges {
 
     private counter: number = 0;
     private shopItem: ShopItem = null;
-    private shopcart: Observable<IShopCart>;
+    private shopcart$: Observable<IShopCart>;
 
     constructor(
         private router: Router,
@@ -48,7 +48,7 @@ export class ProdBookingComponent implements OnInit, OnChanges {
         //Create ShopItem
         this.shopItem = new ShopItem();
         //Get the reducer
-        this.shopcart = store.select<IShopCart>(x=>x.shopcart);        
+        this.shopcart$ = store.select<IShopCart>(x=>x.shopcart);        
     }
 
 
@@ -65,7 +65,7 @@ export class ProdBookingComponent implements OnInit, OnChanges {
         let action = new ShopcartAction(PUSH, this.shopItem);
         this.store.dispatch(action);
 
-        this.shopcart.subscribe(data => {
+        this.shopcart$.subscribe(data => {
             console.log(data);
             this.emitEvents.emit(data);
         });
@@ -77,7 +77,7 @@ export class ProdBookingComponent implements OnInit, OnChanges {
         this.store.dispatch({ type: PULL, payload: this.shopItem });
 
 
-        this.shopcart.subscribe(data => {
+        this.shopcart$.subscribe(data => {
             this.emitEvents.emit(data);
         });
 
@@ -87,7 +87,7 @@ export class ProdBookingComponent implements OnInit, OnChanges {
         this.shopItem.count = 0;
         this.store.dispatch({ type: CLEAR });
 
-        this.shopcart.subscribe(data => {
+        this.shopcart$.subscribe(data => {
             this.emitEvents.emit(data);
         });
     }

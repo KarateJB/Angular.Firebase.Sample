@@ -9,6 +9,7 @@ import { IOrder } from '../../interface/IOrder';
 import { Order } from '../../class/Order';
 import { ShopCart } from '../../class/ShopCart';
 import { ShopItem } from '../../class/ShopItem';
+import { IStore } from '../../interface/IStore';
 
 
 declare var swal: any; //SweetAlert2 typings definition
@@ -64,16 +65,11 @@ export class ShopcartComponent implements OnInit {
     constructor(
         private router: Router,
         private shopcartStore: Store<IShopCart>,
-        private orderStore: Store<IOrder>
+        private store: Store<IStore>
     ) {
-        //Get the shopcart reducer
-        this.shopcart$ = shopcartStore.select(x=>x);        
-        //this.shopcart$.subscribe(data => {
-        //    console.log(data.items);
-        //})
-
-        //Get the order reducer
-        this.order$ = orderStore.select(x=>x);
+        //Get the reducer
+        this.shopcart$ = this.store.select<IShopCart>(x => x.shopcart);
+        this.order$ = this.store.select<IOrder>(x=>x.order);
     }
 
     ngOnInit() {
@@ -91,13 +87,13 @@ export class ShopcartComponent implements OnInit {
                 items: data.items
             };
 
-            this.orderStore.dispatch({ type: SAVE, payload: orderItem });
+            this.store.dispatch({ type: SAVE, payload: orderItem });
         });
 
 
         this.order$.subscribe(data => {
 
-            let state = this._getState(this.orderStore);
+            let state = this._getState(this.store);
             console.log("Adding " + state.order.status + " to array!");
             this.states.push(state.order.status);
 
@@ -108,7 +104,7 @@ export class ShopcartComponent implements OnInit {
         this.router.navigate(['Product/Index']);
     }
 
-    private _getState(store: Store<IOrder>) {
+    private _getState(store: Store<IStore>) {
 
         let state: any;
         store.take(1).subscribe(s => state = s);
