@@ -57,8 +57,6 @@ export class ProdBookComponent implements OnInit {
         this.productService.getByType(PROD_TYPE).subscribe(data => {
             this.books = data;
 
-            console.log(this.books);
-
             //Use shopping cart to update data
             this.shopcart$.subscribe(cart => {
                 this.books.forEach(item => {

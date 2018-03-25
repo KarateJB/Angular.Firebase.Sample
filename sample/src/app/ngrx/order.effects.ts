@@ -26,7 +26,7 @@ export class orderEffects {
             let payload: Order = {
                 id: AppUtility.generateUUID(),
                 customer: oa.payload.customer,
-                status: "Saved!!",
+                status: SAVED,
                 date: oa.payload.date,
                 items: oa.payload.items
             };
