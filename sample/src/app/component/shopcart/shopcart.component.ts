@@ -18,44 +18,10 @@ import { AppUtility } from '../../class/AppUtility';
 declare var swal: any; //SweetAlert2 typings definition
 
 
-interface AppState {
-    counter: number;
-}
-
-
 @Component({
     selector: 'shop-cart',
     providers: [],
-    template: `
-                   <div>
-                      <button class='btn btn-success' [disabled]='isDisableSendOrder' (click)="sendOrder()"><i class="fa fa-save"></i> Send Order </button>
-                      <button class="btn btn-default" (click)="goToProducts()"><i class="fa fa-ra"></i> Back </button>
-                      <span *ngFor="let st of states">
-                         <i class="fa fa-arrow-circle-right"></i>{{st}}
-                      </span>
-                   </div>
-
-                   <div>
-                   <table class="table table-inverse">
-                     <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Number</th>
-                            <th>Price/per</th>
-                            <th>Total Price</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr *ngFor="let item of (shopcart$ | async)?.items">
-                          <td>{{item.title}}</td>
-                          <td>{{item.count}}</td>
-                          <td>{{item.price}}</td>
-                          <td>{{item.count * item.price}}</td>
-                        </tr>
-                     </tbody>
-                   </table>
-                   </div>
-                 `
+    templateUrl: './shopcart.component.html',
     //styleUrls: ['/app/component/Basic/Product/Product-index.component.css']
 })
 
@@ -102,10 +68,7 @@ export class ShopcartComponent implements OnInit {
             this.store.dispatch({ type: SAVE, payload: orderItem });
 
             this.order$.subscribe(ord => {
-            
-                console.log('STATUS=' + ord.status);
                 this.states.push(ord.status);
-    
             });
         });
 

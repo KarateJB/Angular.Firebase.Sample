@@ -7,6 +7,7 @@ import { ProdToyComponent } from './component/prod-toy/prod-toy.component';
 import { ShopcartComponent } from './component/shopcart/shopcart.component';
 import { ProdCreateComponent } from './component/prod-create/prod-create.component';
 import { ProdEditComponent } from './component/prod-edit/prod-edit.component';
+import { OrderComponent } from './component/order/order.component';
 
 const routes: Routes = [
   {path:'Login', component: LoginComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'Product/Shopcart', component: ShopcartComponent },
   { path: 'Product/Create', component: ProdCreateComponent },
   { path: 'Product/Edit/:id', component: ProdEditComponent },
+  { path: 'Orders', component: OrderComponent },
   {path:'', redirectTo: 'Login', pathMatch: 'full'}
 ]
 

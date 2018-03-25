@@ -38,6 +38,7 @@ import { StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { OrderService } from './service/order.service';
 import { ProductService } from './service/product.service';
 import { IStore } from './interface/IStore';
+import { OrderComponent } from './component/order/order.component';
 
 // declare module '@ngrx/store' {
 //   interface Action {
@@ -62,6 +63,7 @@ let reducers: IStore = {
     ShopcartComponent,
     ProdCreateComponent,
     ProdEditComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

@@ -38,6 +38,10 @@ export class OrderService {
         return this._queryOrders().map(arr => arr.filter(ord => ord.id === id)[0]);
     }
 
+    public getByCustomer(email: string): Observable<Order[]> {
+        return this._queryOrders().map(arr => arr.filter(ord => ord.customer === email));
+    }
+
     //Create new product
     public create(ord: Order) {
         //Set UUID to id
