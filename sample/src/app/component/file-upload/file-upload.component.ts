@@ -1,9 +1,9 @@
-import { BlockUIService } from './../../service/blockUI.service';
+import { Component, OnInit, ViewContainerRef, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
 import { AppUtility } from '../../class/AppUtility';
+import { BlockUIService } from './../../service/blockUI.service';
 
 @Component({
   selector: 'file-upload',
@@ -11,7 +11,11 @@ import { AppUtility } from '../../class/AppUtility';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
+  
 
+  @Input('img') imgUri: string;
+  @Output('change-img-uri') updateImgUri = new EventEmitter<string>();
+  
   private task: AngularFireUploadTask; //AngularFireUploadTask
   private percentage$: Observable<number>;
   private snapshot$: Observable<any>;
@@ -63,6 +67,7 @@ export class FileUploadComponent implements OnInit {
       }
       else {
         this.blockUI.stop();
+        this.downloadUri$.subscribe(uri=> this.updateImgUri.emit(uri));
       }
     });
   }

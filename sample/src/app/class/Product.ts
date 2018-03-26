@@ -4,4 +4,5 @@ export class Product {
     type: string; //Book,Toy,Music
     title: string;
     price: number;
+    imgUri: string;
 }

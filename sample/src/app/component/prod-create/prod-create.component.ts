@@ -75,6 +75,10 @@ export class ProdCreateComponent implements OnInit {
             });
     }
 
+    private setImgUri(event:string){
+        this.prod.imgUri=event;
+    }
+
 
     //Back to list (Show list)
     private backToList() {

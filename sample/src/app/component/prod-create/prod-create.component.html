@@ -22,7 +22,7 @@
     <div class="form-group">
             <label class="control-label  col-md-2">Product image</label>
             <div class="col-md-3">
-                <file-upload></file-upload>
+                <file-upload [(img)]="prod.imgUri" (change-img-uri)="setImgUri($event)"></file-upload>
             </div>
         </div>
 
