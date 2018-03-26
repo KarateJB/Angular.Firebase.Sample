@@ -72,7 +72,13 @@ export class ProdCreateComponent implements OnInit {
                     rt.navigate(['Product/Index']);
                 });
 
-            });
+            }).catch(e=>
+                swal(
+                    'Error!',
+                    'Access denied!',
+                    'error'
+                )
+            );
     }
 
     private setImgUri(event:string){

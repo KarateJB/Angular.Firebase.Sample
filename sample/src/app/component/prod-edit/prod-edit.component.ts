@@ -73,7 +73,13 @@ export class ProdEditComponent implements OnInit {
                     rt.navigate(['Product/Index']);
                 });
 
-            });
+            }).catch(e=>
+                swal(
+                    'Error!',
+                    'Access denied!',
+                    'error'
+                )
+            );
     }
 
 

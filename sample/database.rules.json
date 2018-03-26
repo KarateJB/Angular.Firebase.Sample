@@ -1,6 +1,15 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
-  }
+    "Demo": 
+    	{
+        "products":{
+          ".read": "auth != null",
+          ".write": "auth.token.admin === true"
+    		},
+        "orders": {
+          ".read": "auth != null",
+          ".write": "auth != null"
+    		}
+      }
+    }
 }

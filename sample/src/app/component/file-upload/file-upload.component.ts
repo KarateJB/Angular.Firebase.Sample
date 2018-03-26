@@ -6,6 +6,7 @@ import { AppUtility } from '../../class/AppUtility';
 import { BlockUIService } from './../../service/blockUI.service';
 import 'rxjs/add/observable/of';
 
+declare var swal: any; //SweetAlert2 typings definition
 
 @Component({
   selector: 'file-upload',
@@ -35,18 +36,18 @@ export class FileUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.msg="Drop image here or use the following upload button...";
+    this.msg = "Drop image here or use the following upload button...";
   }
 
-  ngOnChanges(){
-    if (this.imgUri){
+  ngOnChanges() {
+    if (this.imgUri) {
       this.downloadUri$ = Observable.of(this.imgUri);
       // this.downloadUri$ = Observable.create(observer => {
       //   observer.next(this.imgUri);
       //   observer.complete();
       // });
     }
-   }
+  }
 
   private hover(event: boolean) {
     this.isHovering = event;
@@ -57,8 +58,7 @@ export class FileUploadComponent implements OnInit {
     const fileExtension = file.name.split('.').pop();
     const path = `Demo/${AppUtility.generateUUID()}.${fileExtension}`;
     const customerMetadata = 'Product image';
-     
-    console.log(file.type);
+
     if (file.type.split('/')[0] !== 'image') {
       this.msg = 'Unsupported file type!';
       return;
@@ -81,7 +81,18 @@ export class FileUploadComponent implements OnInit {
       }
       else {
         this.blockUI.stop();
-        this.downloadUri$.subscribe(uri => this.updateImgUri.emit(uri));
+        this.downloadUri$.subscribe(
+          uri => this.updateImgUri.emit(uri),
+          error => {
+            this.blockUI.stop();
+            swal(
+              'Error!',
+              'Access denied!',
+              'error'
+            );
+
+          }
+        );
       }
     });
   }
