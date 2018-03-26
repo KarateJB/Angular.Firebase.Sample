@@ -35,7 +35,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.msg="Drop image here or use the following upload button...";
   }
 
   ngOnChanges(){
@@ -57,9 +57,10 @@ export class FileUploadComponent implements OnInit {
     const fileExtension = file.name.split('.').pop();
     const path = `Demo/${AppUtility.generateUUID()}.${fileExtension}`;
     const customerMetadata = 'Product image';
-
-    if (file.type.split('/')[0] != 'image') {
-      this.msg = 'Unsupported file type: ' + file.type;
+     
+    console.log(file.type);
+    if (file.type.split('/')[0] !== 'image') {
+      this.msg = 'Unsupported file type!';
       return;
     }
 

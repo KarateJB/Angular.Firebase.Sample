@@ -5,7 +5,7 @@
       (dropped)="upload($event)"     
 >
     <div class="drop-zone card-img-top" [ngClass]="{'hovering': isHovering}">
-        <label *ngIf="!(downloadUri$ | async)">Drop image here or use the following upload button...</label>
+        <label *ngIf="!(downloadUri$ | async)">{{ msg }}</label>
         <img *ngIf="downloadUri$ | async as dlUri" class="drop-img" [src]="dlUri">
     </div>
     <div class="card-body"> <input class="file-input" type="file" (change)="upload($event.target.files)"> </div>
