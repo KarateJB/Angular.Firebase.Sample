@@ -27,6 +27,8 @@ import { ProdBookingComponent } from './component/prod-booking/prod-booking.comp
 import { ShopcartComponent } from './component/shopcart/shopcart.component';
 import { ProdCreateComponent } from './component/prod-create/prod-create.component';
 import { ProdEditComponent } from './component/prod-edit/prod-edit.component';
+import { BlockUIService } from './service/blockUI.service';
+import { BlockUIComponent } from './component/block-ui/blockUI.component';
 
 //ngrx
 import { shopcartReducer } from './ngrx/shopcart.action';
@@ -39,6 +41,8 @@ import { OrderService } from './service/order.service';
 import { ProductService } from './service/product.service';
 import { IStore } from './interface/IStore';
 import { OrderComponent } from './component/order/order.component';
+import { DropFileDirective } from './directive/drop-file.directive';
+import { FileUploadComponent } from './component/file-upload/file-upload.component';
 
 // declare module '@ngrx/store' {
 //   interface Action {
@@ -55,6 +59,7 @@ let reducers: IStore = {
 @NgModule({
   declarations: [
     AppComponent,
+    BlockUIComponent,
     LoginComponent,
     ProdIndexComponent,
     ProdBookComponent,
@@ -64,6 +69,8 @@ let reducers: IStore = {
     ProdCreateComponent,
     ProdEditComponent,
     OrderComponent,
+    DropFileDirective,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +91,7 @@ let reducers: IStore = {
   ],
   providers: [
     { provide: ToastOptions, useClass: ToastConfig },
+    BlockUIService,
     FbService,
     OrderService,
     ProductService

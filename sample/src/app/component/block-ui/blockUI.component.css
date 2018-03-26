@@ -1,0 +1,43 @@
+.blockui-overlay {
+  background-color: white;
+  cursor: wait;
+}
+
+.blockui-message-container {
+  position: fixed;
+  top: 40%;
+  height: 0;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10001;
+  cursor: wait;
+}
+
+.blockui-message {
+  display: inline-block;
+  text-align: left;
+  background-color: #333;
+  color: #f5f5f5;
+  padding: 20px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bold;
+  filter: alpha(opacity=100);
+}
+
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+}
