@@ -31,8 +31,8 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "ng2-toastr": "^4.1.2",
-    "rxjs": "^5.5.6",
     "sweetalert2": "^7.15.1",
+    "rxjs": "^5.5.7",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

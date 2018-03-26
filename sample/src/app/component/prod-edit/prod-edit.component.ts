@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../service/product.service';
 import { Product } from '../../class/Product';
 import { ProductType } from '../../class/ProductType';
+import { BlockUIService } from '../../service/blockUI.service';
 
 declare var swal: any; //SweetAlert2 typings definition
 
@@ -21,8 +22,11 @@ export class ProdEditComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private prodService: ProductService
+        private prodService: ProductService,
+        private viewContainerRef: ViewContainerRef,
+        private blockUI: BlockUIService
     ) {
+        this.blockUI.vRef = this.viewContainerRef;
         this.title = "Products - Edit";
         this.prod = new Product();
         this.prodTypes = this.prodService.getProductTypes();
@@ -32,6 +36,7 @@ export class ProdEditComponent implements OnInit {
         this.route.params.subscribe(params => {
             let prodId = params['id'];
 
+            this.blockUI.start();
             this.prodService.getById(prodId).subscribe(data => {
                 this.prod = data;
                 this.prodTypes.forEach(type => {
@@ -40,8 +45,13 @@ export class ProdEditComponent implements OnInit {
                     }
                 })
 
+                this.blockUI.stop();
             })
         });
+    }
+
+    private setImgUri(event:string){
+        this.prod.imgUri=event;
     }
 
     //Save!

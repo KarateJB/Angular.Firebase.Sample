@@ -45,6 +45,5 @@ export class OrderComponent implements OnInit {
 
   private _getOrders(userEmail: string){
     this.myOrders$ = this.orderService.getByCustomer(userEmail);
-    this.myOrders$.subscribe(x=>console.log(x));
   }
 }

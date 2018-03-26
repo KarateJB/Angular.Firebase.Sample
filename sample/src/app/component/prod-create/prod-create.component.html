@@ -10,7 +10,7 @@
     <div class="form-group">
         <label class="control-label  col-md-2">Title</label>
         <div class="col-md-3">
-            <input [(ngModel)]="prod.title" class="form-control"  [placeholder]="prodHint"/>
+            <input [(ngModel)]="prod.title" class="form-control" [placeholder]="prodHint" />
         </div>
     </div>
     <div class="form-group">
@@ -20,11 +20,11 @@
         </div>
     </div>
     <div class="form-group">
-            <label class="control-label  col-md-2">Product image</label>
-            <div class="col-md-3">
-                <file-upload [(img)]="prod.imgUri" (change-img-uri)="setImgUri($event)"></file-upload>
-            </div>
+        <label class="control-label  col-md-2">Product image</label>
+        <div class="col-md-3">
+            <file-upload [(img)]="prod.imgUri" (change-img-uri)="setImgUri($event)"></file-upload>
         </div>
+    </div>
 
     <div class="form-group text-center">
         <input type="button" class="btn btn-success" value="Save" (click)="save()" />

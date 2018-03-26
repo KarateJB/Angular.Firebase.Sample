@@ -4,6 +4,8 @@ import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
 import { Observable } from 'rxjs/Observable';
 import { AppUtility } from '../../class/AppUtility';
 import { BlockUIService } from './../../service/blockUI.service';
+import 'rxjs/add/observable/of';
+
 
 @Component({
   selector: 'file-upload',
@@ -11,11 +13,11 @@ import { BlockUIService } from './../../service/blockUI.service';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
-  
+
 
   @Input('img') imgUri: string;
   @Output('change-img-uri') updateImgUri = new EventEmitter<string>();
-  
+
   private task: AngularFireUploadTask; //AngularFireUploadTask
   private percentage$: Observable<number>;
   private snapshot$: Observable<any>;
@@ -33,7 +35,18 @@ export class FileUploadComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
+
+  ngOnChanges(){
+    if (this.imgUri){
+      this.downloadUri$ = Observable.of(this.imgUri);
+      // this.downloadUri$ = Observable.create(observer => {
+      //   observer.next(this.imgUri);
+      //   observer.complete();
+      // });
+    }
+   }
 
   private hover(event: boolean) {
     this.isHovering = event;
@@ -62,12 +75,12 @@ export class FileUploadComponent implements OnInit {
     //Monitor the upload progress
     this.snapshot$.subscribe(snap => {
       console.log(`State:${snap.state} for ${snap.bytesTransferred}/${snap.totalBytes}`);
-      if (snap.state === 'running' && snap.bytesTransferred < snap.totalBytes){
+      if (snap.state === 'running' && snap.bytesTransferred < snap.totalBytes) {
         //Do something when uploading file
       }
       else {
         this.blockUI.stop();
-        this.downloadUri$.subscribe(uri=> this.updateImgUri.emit(uri));
+        this.downloadUri$.subscribe(uri => this.updateImgUri.emit(uri));
       }
     });
   }
