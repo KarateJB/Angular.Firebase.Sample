@@ -1,3 +1,14 @@
 .hovering {
-    background-color: gray;
+    background-color: lightgreen;
+}
+
+.drop-zone {
+    width: 150px;
+    height: 150px;
+    border: 1px dotted darkblue;
+}
+
+.drop-img {
+    width: 150px;
+    height: 150px;
 }

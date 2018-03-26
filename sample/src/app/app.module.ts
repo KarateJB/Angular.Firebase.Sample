@@ -11,6 +11,7 @@ import { AngularFireModule } from 'angularfire2';
 import { FirebaseConfig } from './class/FirebaseConfig';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 //3rd packages
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -72,14 +73,18 @@ let reducers: IStore = {
     DropFileDirective,
     FileUploadComponent,
   ],
+  entryComponents: [
+    BlockUIComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(((new FirebaseConfig).config)),
-    AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
     ToastModule.forRoot(),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([orderEffects]),

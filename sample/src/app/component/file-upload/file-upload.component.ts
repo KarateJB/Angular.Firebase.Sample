@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { AppUtility } from '../../class/AppUtility';
 
 @Component({
-  selector: 'app-file-upload',
+  selector: 'file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css']
 })
@@ -57,8 +57,13 @@ export class FileUploadComponent implements OnInit {
 
     //Monitor the upload progress
     this.snapshot$.subscribe(snap => {
-      if (snap.state !== 'running' && snap.bytesTransferred == snap.totalBytes)
+      console.log(`State:${snap.state} for ${snap.bytesTransferred}/${snap.totalBytes}`);
+      if (snap.state === 'running' && snap.bytesTransferred < snap.totalBytes){
+        //Do something when uploading file
+      }
+      else {
         this.blockUI.stop();
+      }
     });
   }
 }
