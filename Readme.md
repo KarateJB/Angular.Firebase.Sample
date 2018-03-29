@@ -3,7 +3,7 @@
 1. Create a new Firebase project
 
 * Enable **Google** and **Anonymous** login
-* Set RTDB ruls
+* Set RTDB rules
 ```
 {
   "rules": {
@@ -56,7 +56,8 @@ $ cd Angular.Firebase/sample
 $ npm install
 ```
 
-6. Update FirebaseConfig.ts
+6. Update sample\src\app\class\FirebaseConfig.ts
+
 
 7. Build the app (To /dist)
 ```
