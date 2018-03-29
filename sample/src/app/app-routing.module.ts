@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'Product/Create', component: ProdCreateComponent },
   { path: 'Product/Edit/:id', component: ProdEditComponent },
   { path: 'Orders', component: OrderComponent },
-  {path:'', redirectTo: 'Login', pathMatch: 'full'}
+  {path:'', redirectTo: 'login', pathMatch: 'full'}
 ]
 
 @NgModule({

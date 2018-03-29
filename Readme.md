@@ -1,38 +1,76 @@
 ## To run the project
 
-1. Install Angular CLI
+1. Create a new Firebase project
+
+* Enable **Google** and **Anonymous** login
+* Set RTDB ruls
+```
+{
+  "rules": {
+    "Demo": 
+    	{
+        "products":{
+          ".read": "auth != null",
+           ".write": "auth != null  && auth.token.email == 'xxx@gmail.com'"
+
+    		},
+        "orders": {
+          ".read": "auth != null",
+          ".write": "auth != null"
+    		}
+      }
+    }
+}
+```
+
+* Set Storage rules
+```
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read: if request.auth!=null;
+      allow write: if (request.resource.size < 1 * 1024 * 1024 && request.auth.token.email == 'xxx@gmail.com');
+    }
+  }
+}
+```
+
+2. Install Angular CLI
 ```
 $ npm install -g @angular/cli
 ```
 
-2. Install Firebase CLI
+3. Install Firebase CLI
 ```
 $ npm install -g firebase-tools
 ```
 
-3. Clone this project
+4. Clone this project
 ```
 $ git clone https://github.com/KarateJB/Angular.Firebase.git
 ```
 
-4. Install npm packages
+5. Install npm packages
 ```
 $ cd Angular.Firebase/sample
 $ npm install
 ```
 
-5. Build the app (To /dist)
+6. Update FirebaseConfig.ts
+
+7. Build the app (To /dist)
 ```
 $ ng build --prod --aot=false
 ```
 
-6. Deploy
+8. Deploy to Firebase
 ```
 $ firebase login
 $ firebase init
 $ firebase deploy
+```
 
-7. Use other firebase project (Optional)
+9. Use other firebase project (Optional)
 ```
 $ firebase use --add
 $ firebase list
