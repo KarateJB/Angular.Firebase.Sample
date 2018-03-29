@@ -1,10 +1,11 @@
 {
   "rules": {
-    "Demo": 
+    "Demo":
     	{
         "products":{
           ".read": "auth != null",
-          ".write": "auth.token.admin === true"
+           ".write": "auth != null  && auth.token.email == 'ppippenkimo@gmail.com'"
+
     		},
         "orders": {
           ".read": "auth != null",

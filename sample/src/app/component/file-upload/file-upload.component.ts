@@ -74,26 +74,26 @@ export class FileUploadComponent implements OnInit {
     this.downloadUri$ = this.task.downloadURL();
 
     //Monitor the upload progress
-    this.snapshot$.subscribe(snap => {
-      console.log(`State:${snap.state} for ${snap.bytesTransferred}/${snap.totalBytes}`);
-      if (snap.state === 'running' && snap.bytesTransferred < snap.totalBytes) {
-        //Do something when uploading file
-      }
-      else {
+    this.snapshot$.subscribe(
+      snap => {
+        console.log(`State:${snap.state} for ${snap.bytesTransferred}/${snap.totalBytes}`);
+        if (snap.state === 'running' && snap.bytesTransferred < snap.totalBytes) {
+          //Do something when uploading file
+        }
+        else {
+          this.blockUI.stop();
+          this.downloadUri$.subscribe(
+            uri => this.updateImgUri.emit(uri)
+          );
+        }
+      },
+      error => {
         this.blockUI.stop();
-        this.downloadUri$.subscribe(
-          uri => this.updateImgUri.emit(uri),
-          error => {
-            this.blockUI.stop();
-            swal(
-              'Error!',
-              'Access denied!',
-              'error'
-            );
-
-          }
+        swal(
+          'Error!',
+          'Access denied!',
+          'error'
         );
-      }
-    });
+      });
   }
 }
