@@ -29,7 +29,7 @@ service firebase.storage {
   match /b/{bucket}/o {
     match /{allPaths=**} {
       allow read: if request.auth!=null;
-      allow write: if (request.resource.size < 1 * 1024 * 1024 && request.auth.token.email == 'xxx@gmail.com');
+      allow write: if (request.resource.size < 0.5 * 1024 * 1024 && request.auth.token.email == 'xxx@gmail.com');
     }
   }
 }
@@ -57,7 +57,6 @@ $ npm install
 ```
 
 6. Update sample\src\app\class\FirebaseConfig.ts
-
 
 7. Build the app (To /dist)
 ```
