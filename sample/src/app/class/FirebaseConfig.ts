@@ -1,14 +1,14 @@
 export class FirebaseConfig {
 
-    get config(): any {
-      return {
-        apiKey: "AIzaSyAj658vus1gDUOfUynLLhsLHEYBtn4CwrI",
-        authDomain: "shopcart-f4b3e.firebaseapp.com",
-        databaseURL: "https://shopcart-f4b3e.firebaseio.com",
-        projectId: "shopcart-f4b3e",
-        storageBucket: "shopcart-f4b3e.appspot.com",
-        messagingSenderId: "722572454313"
-      };
-    }
+  get config(): any {
+    return {
+      apiKey: "AIzaSyCZzDE0KS0jj4WIW424-92w86lerFaLiKU",
+      authDomain: "fir-e1a22.firebaseapp.com",
+      databaseURL: "https://fir-e1a22.firebaseio.com",
+      projectId: "fir-e1a22",
+      storageBucket: "fir-e1a22.appspot.com",
+      messagingSenderId: "499014936125"
+    };
   }
+}
 
