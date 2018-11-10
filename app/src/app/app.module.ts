@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 
 //Firebase
 import { AngularFireModule } from 'angularfire2';
-import { FirebaseConfig } from './class/FirebaseConfig';
+import { FirebaseConfig } from './class/FirebaseConfig.prod';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';

@@ -1,0 +1,48 @@
+{
+  "Demo" : {
+    "orders" : {
+      "ef86e847-e50b-4b14-a4e9-ded589fb01ff" : {
+        "customer" : "ppippenkimo@gmail.com",
+        "date" : "2018/4/6 下午7:06:43",
+        "id" : "ef86e847-e50b-4b14-a4e9-ded589fb01ff",
+        "items" : [ {
+          "count" : 2,
+          "id" : "800afd3c-1615-49ba-b33d-497842af6c82",
+          "price" : "1000",
+          "title" : "Star Wars"
+        } ],
+        "status" : "SAVED"
+      }
+    },
+    "products" : {
+      "3a30b4b6-8fe5-48cf-9aab-06f431257928" : {
+        "id" : "3a30b4b6-8fe5-48cf-9aab-06f431257928",
+        "price" : "2500",
+        "title" : "Implementing Domain-Driven Design",
+        "type" : "Book",
+        "typeId" : "1"
+      },
+      "6cfd8b64-0ff2-4bde-8278-befaa2f4e42f" : {
+        "id" : "6cfd8b64-0ff2-4bde-8278-befaa2f4e42f",
+        "price" : "500",
+        "title" : "Toy Robot",
+        "type" : "Toy",
+        "typeId" : "2"
+      },
+      "800afd3c-1615-49ba-b33d-497842af6c82" : {
+        "id" : "800afd3c-1615-49ba-b33d-497842af6c82",
+        "price" : "1000",
+        "title" : "Star Wars",
+        "type" : "Book",
+        "typeId" : "1"
+      },
+      "fa7ece70-6f5c-41a2-a7a6-cd03ca3d0136" : {
+        "id" : "fa7ece70-6f5c-41a2-a7a6-cd03ca3d0136",
+        "price" : "800",
+        "title" : "Essential Scrum",
+        "type" : "Book",
+        "typeId" : "1"
+      }
+    }
+  }
+}
