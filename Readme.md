@@ -1,7 +1,7 @@
 ## Introduction
 
 * [Slide (Traditional Chinese)](https://www.slideshare.net/LinJB1/angularfirebase-ithome-serverless-allstar)
-* [Source code](https://github.com/KarateJB/Angular.Firebase)
+* [Source code](https://github.com/KarateJB/Angular.Firebase.Sample)
 
 
 ## Environment
@@ -99,14 +99,14 @@ $ npm install -g firebase-tools
 ### Clone the Github repository
 
 ```
-$ git clone https://github.com/KarateJB/Angular.Firebase.git
+$ git clone https://github.com/KarateJB/Angular.Firebase.Sample.git
 ```
 
 
 ### Install npm packages
 
 ```
-$ cd Angular.Firebase/sample
+$ cd Angular.Firebase.Sample/app
 $ npm install
 ```
 
@@ -120,7 +120,8 @@ Back to Firebase, and copy the Firebase api config.
 ![](https://1.bp.blogspot.com/-YIO5f6Hw5yU/WsajaPY73WI/AAAAAAAAF20/cvCKjoG5JDISxMdtkZN8OWr4mAg9CnT0gCEwYBhgL/s640/image007.png)
 
  
-Open sample\src\app\class\FirebaseConfig.ts and paste the above configuration.
+Rename `app\src\app\class\FirebaseConfig.ts` to `FirebaseConfig.prod.js` and paste the above configuration.
+
 
 
 ▋Build the app (To /dist)
